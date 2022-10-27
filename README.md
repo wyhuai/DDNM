@@ -9,7 +9,7 @@ This repository contains the code release for ***Zero Shot Image Restoration Usi
 - Inpainting
 - Deblurring
 - Compressed Sensing
-- Old Photo Restoration!
+- Old Photo Restoration🌟
 
 
 ## Installation
