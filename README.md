@@ -26,7 +26,7 @@ We provide a pretrained model in experiments/horns, so you can run the following
 ## Try DDNM on Other Diffusion Models
 It is ***easy*** to try a basic DDNM on other diffusion models! 
 1. Find the variant $\mathbf{x}_{0|t}$ in the target codes.
-2. Do $\mathbf{x}_{0|t}=\mathbf{A^{\dagger}y} + (\mathbf{I-A^{\dagger}A})\mathbf{x}$ before calculating the next state $\mathbf{x}_{t-1}$
+2. Do $\mathbf{x}_{0|t}$=$\mathbf{A^{\dagger}y} + (\mathbf{I-A^{\dagger}A})\mathbf{x}$ before calculating the next state $\mathbf{x}_{t-1}$
 4. Copy these codes 
 
 ## Training
