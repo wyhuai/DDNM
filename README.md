@@ -4,8 +4,10 @@
 
 ## Brief
 This repository contains the code release for ***Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model (DDNM)***.
+
 ***Supported Applications:***
 - Super-Resolution
+- Colorization
 - Inpainting
 - Deblurring
 - Compressed Sensing
@@ -21,11 +23,9 @@ This repository contains the code release for ***Zero Shot Image Restoration Usi
 We provide a pretrained model in experiments/horns, so you can run the following command to generate a video with defocus effects. You may change the lens parameters "l" and "a" in eval_vid.py to adjust the focus distance and aperture size. 
 `python -m eval_vid --data_dir=horns --train_dir=experiments/horns --chunk=3196 --gin_file=configs/llff.gin --logtostderr`
 
-## Data
-You can download the datasets from the [NeRF official Google Drive](https://drive.google.com/drive/folders/128yBriW1IG_3NJ5Rp7APSTZsJqdJdfc1). 
-
-### Generate multi-blur datasets
-You can generate the multi-blur datasets by running datatool.py, remember to change your desired data path and the blur kernel size. 
+## Transplant DDNM to Other Diffusion Models
+It is ***easy*** to transplant DDNM to other diffusion models! Generally speaking, we need to:
+1. Find the \mathbf{x}_{0|t}
 
 ## Training
 Run the following command, make sure the path is correct. You also need to change the path inside train.py to your data path.  
