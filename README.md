@@ -1,9 +1,12 @@
 # Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model
-This repository contains the code release for Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model (DDNM).
+This repository contains the code release for ***Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model (DDNM)***.
 ![image](https://user-images.githubusercontent.com/95485229/198285474-ff2e43de-9fc5-40c4-840b-f902bac4fa3c.png)
-## Installation
 
-`git clone https://github.com/wyhuai/nerfocus.git; cd nerfocus`  
+## Applications
+
+
+## Installation
+`git clone https://github.com/wyhuai/DDNM.git; cd nerfocus`  
 `conda install pip; pip install --upgrade pip`  
 `pip install -r requirements.txt`  
 
