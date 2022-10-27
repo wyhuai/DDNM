@@ -1,5 +1,5 @@
 # Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model
-This repository contains the code release for Zero shot image restoration using denoising diffusion null-space model. This implementation is written in JAX, and is a fork of Jon Barron's Mip-NeRF implementation. 
+This repository contains the code release for Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model (DDNM).
 ![image](https://user-images.githubusercontent.com/95485229/157234315-3ea60023-3765-40e0-b820-87653dcbcde1.png)
 ## Installation
 
