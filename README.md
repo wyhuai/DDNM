@@ -1,6 +1,6 @@
 # Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model
 This repository contains the code release for Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model (DDNM).
-[fig1.pdf](https://github.com/wyhuai/DDNM/files/9879371/fig1.pdf)
+![contents](https://github.com/wyhuai/DDNM/files/9879371/fig1.pdf)
 ## Installation
 
 
