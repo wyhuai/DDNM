@@ -24,10 +24,21 @@ We provide a pretrained model in experiments/horns, so you can run the following
 `python -m eval_vid --data_dir=horns --train_dir=experiments/horns --chunk=3196 --gin_file=configs/llff.gin --logtostderr`
 
 ## Try DDNM on Other Diffusion Models
-It is ***easy*** to try a basic DDNM on other diffusion models! 
+It is ***easy*** to try a basic DDNM on other diffusion models! You may reference the following pseudo-code:
 1. Find the variant $\mathbf{x}_{0|t}$ in the target codes.
-2. Do $\mathbf{x}_{0|t}$=$\mathbf{A^{\dagger}y} + (\mathbf{I-A^{\dagger}A})\mathbf{x}$ before calculating the next state $\mathbf{x}_{t-1}$
-4. Copy these codes 
+```json
+"datasets": {
+    "train": {
+        "dataroot": "dataset/ffhq_16_128", // [output root] in prepare.py script
+        "l_resolution": 16, // low resolution need to super_resolution
+        "r_resolution": 128, // high resolution
+        "datatype": "lmdb", //lmdb or img, path of img files
+    },
+    "val": {
+        "dataroot": "dataset/celebahq_16_128", // [output root] in prepare.py script
+    }
+},
+```
 
 ## Training
 Run the following command, make sure the path is correct. You also need to change the path inside train.py to your data path.  
