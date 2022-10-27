@@ -23,9 +23,11 @@ This repository contains the code release for ***Zero Shot Image Restoration Usi
 We provide a pretrained model in experiments/horns, so you can run the following command to generate a video with defocus effects. You may change the lens parameters "l" and "a" in eval_vid.py to adjust the focus distance and aperture size. 
 `python -m eval_vid --data_dir=horns --train_dir=experiments/horns --chunk=3196 --gin_file=configs/llff.gin --logtostderr`
 
-## Deploy DDNM to Other Diffusion Models
-It is ***easy*** to deploy DDNM to other diffusion models! Generally speaking, we need to:
-1. Find the $\mathbf{x}_{0|t}$ $\mathbf{x}=(\mathbf{I-A^{\dagger}A})\mathbf{x}+\mathbf{A^{\dagger}Ax}$
+## Try DDNM on Other Diffusion Models
+It is ***easy*** to try a basic DDNM on other diffusion models! 
+1. Find the variant $\mathbf{x}_{0|t}$ in the target codes.
+2. Add this code before calculating the next state $\mathbf{x}_{t-1}$: $\mathbf{x}_{0|t}=\mathbf{A^{\dagger}y} + (\mathbf{I-A^{\dagger}A})\mathbf{x}$
+3. Copy these codes 
 
 ## Training
 Run the following command, make sure the path is correct. You also need to change the path inside train.py to your data path.  
