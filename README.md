@@ -2,7 +2,7 @@
 
 ![image](https://user-images.githubusercontent.com/95485229/198285474-ff2e43de-9fc5-40c4-840b-f902bac4fa3c.png)
 
-## Brief
+## 🌟Brief
 This repository contains the code release for ***Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model ([DDNM](https://openreview.net/forum?id=mRieQgMtNTQ))***.
 
 ***Supported Applications:***
@@ -14,11 +14,11 @@ This repository contains the code release for ***Zero Shot Image Restoration Usi
 - Old Photo Restoration🌟
 
 
-## Installation
+## 🌟Installation
 
-## Evaluation
+## 🌟Evaluation
 
-## Applying DDNM to Your Own Diffusion Model
+## 😊Applying DDNM to Your Own Diffusion Model
 It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following:
 1. Copy these operator implementations to the core diffusion sampling file, then define your task type, e.g., IR_mode="super resolution".
 ```python
