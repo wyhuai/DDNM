@@ -69,8 +69,8 @@ elif IR_mode=="old photo restoration":
 ```
 2. Find the variant $\mathbf{x}\_{0|t}$ in the target codes, using the result of this function to modify the sampling of $\mathbf{x}\_{t-1}$. Your may need to provide the input degraded image $\mathbf{y}$ and the corresponding noise level $\sigma_\mathbf{y}$.
 ```python
-# Core Implementation of DDNM+, simplified denoising solution.
-# For more accurate denoising, please refer to the paper and the source code.
+# Core Implementation of DDNM+, simplified denoising solution (Section 3.3).
+# For more accurate denoising, please refer to the paper (Appendix I) and the source code.
 
 def ddnmp_core(x0t, y, sigma_y=0, sigma_t, a_t):
 
