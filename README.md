@@ -15,16 +15,13 @@ This repository contains the code release for ***Zero Shot Image Restoration Usi
 
 
 ## Installation
-`git clone https://github.com/wyhuai/DDNM.git; cd nerfocus`  
-`conda install pip; pip install --upgrade pip`  
-`pip install -r requirements.txt`  
 
 ## Evaluation
 We provide a pretrained model in experiments/horns, so you can run the following command to generate a video with defocus effects. You may change the lens parameters "l" and "a" in eval_vid.py to adjust the focus distance and aperture size. 
 `python -m eval_vid --data_dir=horns --train_dir=experiments/horns --chunk=3196 --gin_file=configs/llff.gin --logtostderr`
 
-## Try DDNM on Other Diffusion Models
-It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following code:
+## Apply DDNM to Your Own Diffusion Model
+It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following:
 1. Copy these operator implementations to the core diffusion sampling file.
 ```python
 def color2gray(x):
@@ -70,11 +67,11 @@ elif IR_mode=="old photo restoration":
     A = lambda z: A3(A2(A1(z)))
     Ap = lambda z: A1p(A2p(A3p(z)))
 ```
-1. Find the variant $\mathbf{x}\_{0|t}$ in the target codes, using the result of this function to modify the sampling of $\mathbf{x}\_{t-1}$.
+2. Find the variant $\mathbf{x}\_{0|t}$ in the target codes, using the result of this function to modify the sampling of $\mathbf{x}\_{t-1}$. Your may need to provide the input degraded image $\mathbf{y}$ and the corresponding noise level $\sigma_\mathbf{y}$.
 ```python
 # Core Implementation of DDNM+, simplified denoising solution
 
-def ddnmp_core(x0t, y, sigma_y, sigma_t, a_t):
+def ddnmp_core(x0t, y, sigma_y=0, sigma_t, a_t):
 
     #Eq 19
     if sigma_t >= a_t*sigma_y: 
