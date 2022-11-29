@@ -53,7 +53,7 @@ with following options:
 - `PATH_Y` is the folder name of the test dataset, in `DDNM/exp/datasets`.
 - `ETA` is the DDIM hyperparameter. (default: `0.85`)
 - `STEPS` controls how many timesteps used. (default: `100`)
-- `DEGREDATION` is the type of degredation allowed. (One of: `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`, `old photo restoration`)
+- `DEGREDATION` is the type of degredation allowed. (One of: `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`, `mask_color_sr`, `diy`)
 - `DEGRADATION_SCALE` is the scale of degredation. e.g., `--deg sr_bicubic --deg_scale 4` lead to 4xSR.
 - `SIGMA_Y` is the noise observed in y.
 - `CONFIG` is the name of the config file (see `configs/` for a list), including hyperparameters such as batch size and network architectures.
@@ -79,7 +79,7 @@ sh evaluation.sh
 
 Run the following command
 ```
-sh evaluation.sh
+python main.py --ni --simplified --config celeba_hq_bs1.yml --path_y solvay --timesteps 100 --eta 0.85 --deg "sr_averagepooling" --deg_scale 4.0 --sigma_y 0.1 -i demo
 ```
 ### Old Photo Restoration.
 ![image](https://user-images.githubusercontent.com/95485229/204471696-e27e14f1-c903-4405-a002-2d07a9cf557f.png)
@@ -87,7 +87,7 @@ sh evaluation.sh
 
 Run the following command
 ```
-sh evaluation.sh
+python main.py --ni --simplified --config celeba_hq_bs1.yml --path_y web_photo --timesteps 100 --eta 0.85 --deg "mask_color_sr" --deg_scale 4.0 --sigma_y 0.1 -i demo
 ```
 ### DIY.
 You may use DDNM to handle self-defined real-world IR tasks.
@@ -165,7 +165,7 @@ def ddnm_plus_core(x0t, y, sigma_y=0, sigma_t, a_t):
     
     return x0t, gamma_t
 ```
-3. Actually, this repository contains the above simplified implementation: try use `--simplified`. 
+3. Actually, this repository contains the above simplified implementation: try search `arg.simplified` in `DDNM/runners/diffusion.py` for related codes. 
 
 
 
