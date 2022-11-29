@@ -2,6 +2,8 @@
 ## 🌟Brief
 This repository contains the code release for *Zero Shot Image Restoration Using ***D***enoising ***D***iffusion ***N***ull-Space ***M***odel*.
 
+DDNM can solve various image restoration tasks **without any optimization or finetuning! Yes, in a zero-shot manner**.
+
 📖[Paper](https://openreview.net/forum?id=mRieQgMtNTQ)
 
 🖼️[Project](https://openreview.net/forum?id=mRieQgMtNTQ)
@@ -51,7 +53,7 @@ with following options:
 - `PATH_Y` is the folder name of the test dataset, in `DDNM/exp/datasets`.
 - `ETA` is the DDIM hyperparameter. (default: `0.85`)
 - `STEPS` controls how many timesteps used. (default: `100`)
-- `DEGREDATION` is the type of degredation allowed. (One of: `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`)
+- `DEGREDATION` is the type of degredation allowed. (One of: `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`, `old photo restoration`)
 - `DEGRADATION_SCALE` is the scale of degredation. e.g., `--deg sr_bicubic --deg_scale 4` lead to 4xSR.
 - `SIGMA_Y` is the noise observed in y.
 - `CONFIG` is the name of the config file (see `configs/` for a list), including hyperparameters such as batch size and network architectures.
