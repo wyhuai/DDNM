@@ -70,14 +70,15 @@ sh evaluation.sh
 ## 🔥Real-World Applications.
 ### Real-World Super-Resolution.
 
-![Real-World sr](https://user-images.githubusercontent.com/95485229/204460891-edacc6a4-3436-4151-98fe-43b1de72a6e3.gif)
+![107](https://user-images.githubusercontent.com/95485229/204464922-b1ebea9b-ef4b-46e8-98df-7c184d3b2b44.png)
+![s1577-xcfdb](https://user-images.githubusercontent.com/95485229/204464554-1fe679f2-9e45-44e3-8cca-234b6f772d01.gif)
 
 Run the following command
 ```
 sh evaluation.sh
 ```
 ### Old Photo Restoration.
-![Old Photo Restoration](https://user-images.githubusercontent.com/95485229/204460914-b5709f7d-a07f-445e-8750-e325834b3834.gif)
+![z4dy3-oqaou](https://user-images.githubusercontent.com/95485229/204464570-b526f8d1-5f62-44cc-b7c6-f63117aea2ea.gif)
 
 Run the following command
 ```
@@ -159,7 +160,7 @@ def ddnm_plus_core(x0t, y, sigma_y=0, sigma_t, a_t):
     
     return x0t, gamma_t
 ```
-3. Actually, this repository contains the above simplified implementation: try use "-s simplified". 
+3. Actually, this repository contains the above simplified implementation: try use `--simplified`. 
 
 
 
