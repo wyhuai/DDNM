@@ -38,9 +38,9 @@ For general images, download this [model](https://openaipublic.blob.core.windows
 wget https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt
 ```
 ### Quick Start
-Run below command to get results immediately. The results should be in `DDNM/exp/image_samples/demo_sr4`.
+Run below command to get 4x SR results immediately. The results should be in `DDNM/exp/image_samples/demo`.
 ```
-python main.py --ni -s simplified --config celeba_hq_simple_ddnm.yml --doc celeba_hq --timesteps 100 --eta 0.85 --deg "sr" --sigma_y 0 -i demo_sr4
+python main.py --ni --simplified --config celeba_hq_bs1.yml --path_y celeba_hq --timesteps 100 --eta 0.85 --deg "sr_averagepooling" --deg_scale 4.0 --sigma_y 0 -i demo
 ```
 
 ## 🌟Mode Selection.
