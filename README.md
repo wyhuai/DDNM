@@ -51,6 +51,32 @@ Download this ImageNet testset and put it into "DDNM/exp/datasets/imagenet/".
 cd DDNM
 sh demo.sh
 ```
+### Mode Selection.
+The general command to sample from the model is as follows:
+```
+python main.py --ni --simplified --config {CONFIG}.yml --doc {DATASET} --timesteps {STEPS} --eta {ETA} --deg {DEGRADATION} --deg_scale {DEGRADATION_SCALE} --sigma_y {SIGMA_Y} -i {IMAGE_FOLDER}
+```
+with following options:
+- Use `--simplified` lead to a simplified implementation of DDNM that do not use SVD. Without `--simplified` lead to a SVD-based DDNM implementation.
+- `ETA` is the DDIM hyperparameter. (default: `0.85`)
+- `STEPS` controls how many timesteps used.
+- `DEGREDATION` is the type of degredation allowed. (One of: `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`)
+- `DEGRADATION_SCALE` is the scale of degredation. e.g., `--deg sr_bicubic --deg_scale 4` lead to 4xSR.
+- `SIGMA_Y` is the noise observed in y.
+- `CONFIG` is the name of the config file (see `configs/` for a list), including hyperparameters such as batch size and network architectures.
+- `DATASET` is the name of the dataset used, to determine where the checkpoint file is found.
+- `IMAGE_FOLDER` is the name of the folder the resulting images will be placed in.
+
+For example, for sampling noisy 4x super resolution from the ImageNet 256x256 unconditional model using 20 steps:
+```
+python main.py --ni --config imagenet_256.yml --doc imagenet --timesteps 20 --eta 0.85 --etaB 1 --deg sr4 --sigma_0 0.05
+```
+The generated images are place in the `<exp>/image_samples/{IMAGE_FOLDER}` folder, where `orig_{id}.png`, `y0_{id}.png`, `{id}_-1.png` refer to the original, degraded, restored images respectively.
+
+## Real-World Applications.
+### Real-World Super-Resolution.
+### Old Photo Restoration.
+### DIY.
 
 ## 😊Applying DDNM to Your Own Diffusion Model
 It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following:
