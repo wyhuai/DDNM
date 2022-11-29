@@ -35,23 +35,13 @@ For general images, download this [model](https://openaipublic.blob.core.windows
 ```
 wget https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt
 ```
-
-## 🌟Evaluation
 ### Quick Start
 Run below command to get results immediately. The results should be in "DDNM/exp/image_samples/demo_sr4".
 ```
 python main.py --ni -s simplified --config celeba_hq_simple_ddnm.yml --doc celeba_hq --timesteps 100 --eta 0.85 --deg "sr" --sigma_y 0 -i demo_sr4
 ```
-### Reproduce the quantitative result in the paper.
-Download this CelebA testset and put it into "DDNM/exp/datasets/celeba/".
 
-Download this ImageNet testset and put it into "DDNM/exp/datasets/imagenet/".
-
-```
-cd DDNM
-sh demo.sh
-```
-### Mode Selection.
+## 🌟Mode Selection.
 The general command to sample from the model is as follows:
 ```
 python main.py --ni --simplified --config {CONFIG}.yml --doc {DATASET} --timesteps {STEPS} --eta {ETA} --deg {DEGRADATION} --deg_scale {DEGRADATION_SCALE} --sigma_y {SIGMA_Y} -i {IMAGE_FOLDER}
@@ -73,7 +63,17 @@ python main.py --ni --config imagenet_256.yml --doc imagenet --timesteps 20 --et
 ```
 The generated images are place in the `<exp>/image_samples/{IMAGE_FOLDER}` folder, where `orig_{id}.png`, `y0_{id}.png`, `{id}_-1.png` refer to the original, degraded, restored images respectively.
 
-## Real-World Applications.
+## 🌟Reproduce the quantitative results in the paper.
+Download this CelebA testset and put it into "DDNM/exp/datasets/celeba/".
+
+Download this ImageNet testset and put it into "DDNM/exp/datasets/imagenet/".
+
+```
+cd DDNM
+sh demo.sh
+```
+
+## 🔥Real-World Applications.
 ### Real-World Super-Resolution.
 ### Old Photo Restoration.
 ### DIY.
