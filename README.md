@@ -69,16 +69,18 @@ sh evaluation.sh
 
 ## 🔥Real-World Applications.
 ### Real-World Super-Resolution.
+![how_to_assess_damage](https://user-images.githubusercontent.com/95485229/204471223-0b08d4d4-8d67-44bc-8f6a-acddad7d3317.jpg)
+![真实场景_noise](https://user-images.githubusercontent.com/95485229/204470898-cd729024-c2de-4088-b35d-6b31b8863dae.gif)
 
-![107](https://user-images.githubusercontent.com/95485229/204464922-b1ebea9b-ef4b-46e8-98df-7c184d3b2b44.png)
-![s1577-xcfdb](https://user-images.githubusercontent.com/95485229/204464554-1fe679f2-9e45-44e3-8cca-234b6f772d01.gif)
+
 
 Run the following command
 ```
 sh evaluation.sh
 ```
 ### Old Photo Restoration.
-![z4dy3-oqaou](https://user-images.githubusercontent.com/95485229/204464570-b526f8d1-5f62-44cc-b7c6-f63117aea2ea.gif)
+![orig_62](https://user-images.githubusercontent.com/95485229/204471148-bf155c60-c7b3-4c3a-898c-859cb9d0d723.png)
+![老照片_noise](https://user-images.githubusercontent.com/95485229/204470916-109a068d-5623-460b-be33-5b6b304e52d8.gif)
 
 Run the following command
 ```
