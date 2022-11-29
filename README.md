@@ -44,10 +44,11 @@ python main.py --ni -s simplified --config celeba_hq_simple_ddnm.yml --doc celeb
 ## 🌟Mode Selection.
 The general command to sample from the model is as follows:
 ```
-python main.py --ni --simplified --config {CONFIG}.yml --doc {DATASET} --timesteps {STEPS} --eta {ETA} --deg {DEGRADATION} --deg_scale {DEGRADATION_SCALE} --sigma_y {SIGMA_Y} -i {IMAGE_FOLDER}
+python main.py --ni --simplified --config {CONFIG}.yml --path_y {PATH_Y} --timesteps {STEPS} --eta {ETA} --deg {DEGRADATION} --deg_scale {DEGRADATION_SCALE} --sigma_y {SIGMA_Y} -i {IMAGE_FOLDER}
 ```
 with following options:
 - Adding `--simplified` leads to a simplified implementation of DDNM that **do not** use SVD. Without `--simplified` leads to a SVD-based DDNM implementation.
+- `PATH_Y` is the folder name of the test dataset, in `DDNM/exp/datasets`.
 - `ETA` is the DDIM hyperparameter. (default: `0.85`)
 - `STEPS` controls how many timesteps used. (default: `100`)
 - `DEGREDATION` is the type of degredation allowed. (One of: `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`)
@@ -55,7 +56,7 @@ with following options:
 - `SIGMA_Y` is the noise observed in y.
 - `CONFIG` is the name of the config file (see `configs/` for a list), including hyperparameters such as batch size and network architectures.
 - `DATASET` is the name of the dataset used, to determine where the checkpoint file is found.
-- `IMAGE_FOLDER` is the name of the folder the resulting images will be placed in.
+- `IMAGE_FOLDER` is the folder name of the results.
 
 ## 🌟Reproduce the quantitative results in the paper.
 Download this CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
@@ -69,7 +70,7 @@ sh evaluation.sh
 
 ## 🔥Real-World Applications.
 ### Real-World Super-Resolution.
-![how_to_assess_damage](https://user-images.githubusercontent.com/95485229/204471223-0b08d4d4-8d67-44bc-8f6a-acddad7d3317.jpg)
+![orig_62](https://user-images.githubusercontent.com/95485229/204471148-bf155c60-c7b3-4c3a-898c-859cb9d0d723.png)
 ![真实场景_noise](https://user-images.githubusercontent.com/95485229/204470898-cd729024-c2de-4088-b35d-6b31b8863dae.gif)
 
 
@@ -79,7 +80,7 @@ Run the following command
 sh evaluation.sh
 ```
 ### Old Photo Restoration.
-![orig_62](https://user-images.githubusercontent.com/95485229/204471148-bf155c60-c7b3-4c3a-898c-859cb9d0d723.png)
+![image](https://user-images.githubusercontent.com/95485229/204471696-e27e14f1-c903-4405-a002-2d07a9cf557f.png)
 ![老照片_noise](https://user-images.githubusercontent.com/95485229/204470916-109a068d-5623-460b-be33-5b6b304e52d8.gif)
 
 Run the following command
@@ -87,7 +88,7 @@ Run the following command
 sh evaluation.sh
 ```
 ### DIY.
-You may use DDNM to handle various real-world IR tasks.
+You may use DDNM to handle self-defined real-world IR tasks.
 1. If your are using CelebA pretrained models, try this [tool](???) to crop and align your photo.
 2. If there are local artifacts on your photo, try this [tool](???) to draw a mask to cover them, and save this mask to `DDNM/exp/inp_masks/mask.png`. Then run `DDNM/exp/inp_masks/get_mask.py` to generate `mask.npy`. Correspondingly, you need a mask operator as a component of $\mathbf{A}$.
 3. If your photo is faded, you need a grayscale operator as a component of $\mathbf{A}$.
