@@ -60,7 +60,7 @@ with following options:
 - `DATASET` is the name of the dataset used, to determine where the checkpoint file is found.
 - `IMAGE_FOLDER` is the folder name of the results.
 
-## 🌟Reproduce the quantitative results in the paper.
+## 🌟Reproduce The Quantitative Tesults In The Paper.
 Download this CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
 
 Download this ImageNet testset and put it into `DDNM/exp/datasets/imagenet/`.
