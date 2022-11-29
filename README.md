@@ -43,7 +43,7 @@ Run below command to get 4x SR results immediately. The results should be in `DD
 python main.py --ni --simplified --config celeba_hq_bs1.yml --path_y celeba_hq --timesteps 100 --eta 0.85 --deg "sr_averagepooling" --deg_scale 4.0 --sigma_y 0 -i demo
 ```
 
-## 🌟Mode Selection.
+## 🌟Setting.
 The general command to sample from the model is as follows:
 ```
 python main.py --ni --simplified --config {CONFIG}.yml --path_y {PATH_Y} --timesteps {STEPS} --eta {ETA} --deg {DEGRADATION} --deg_scale {DEGRADATION_SCALE} --sigma_y {SIGMA_Y} -i {IMAGE_FOLDER}
