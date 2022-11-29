@@ -69,21 +69,26 @@ sh evaluation.sh
 
 ## 🔥Real-World Applications.
 ### Real-World Super-Resolution.
+
+![Real-World sr](https://user-images.githubusercontent.com/95485229/204460891-edacc6a4-3436-4151-98fe-43b1de72a6e3.gif)
+
 Run the following command
 ```
 sh evaluation.sh
 ```
 ### Old Photo Restoration.
+![Old Photo Restoration](https://user-images.githubusercontent.com/95485229/204460914-b5709f7d-a07f-445e-8750-e325834b3834.gif)
+
 Run the following command
 ```
 sh evaluation.sh
 ```
 ### DIY.
-You may use DDNM to restore real-world photos.
+You may use DDNM to handle various real-world IR tasks.
 1. If your are using CelebA pretrained models, try this [tool](???) to crop and align your photo.
 2. If there are local artifacts on your photo, try this [tool](???) to draw a mask to cover them, and save this mask to `DDNM/exp/inp_masks/mask.png`. Then run `DDNM/exp/inp_masks/get_mask.py` to generate `mask.npy`. Correspondingly, you need a mask operator as a component of $\mathbf{A}$.
 3. If your photo is faded, you need a grayscale operator as a component of $\mathbf{A}$.
-4. If your photo is blur, you need a downsampler operator as a component of $\mathbf{A}$.
+4. If your photo is blur, you need a downsampler operator as a component of $\mathbf{A}$ and need to set a proper SR scale `--deg_scale`.
 5. If your photo suffers global artifacts, e.g., jpeg-like artifacts or unkown noise, you need to set a proper `sigma_y`. Tips: You can start with a big one, e.g., `--sigma_y 0.5` then scale it down.
 
 Search `args.deg =='diy'` in `DDNM/runners/diffusion.py` and change the definition of $\mathbf{A}$ correspondingly.
