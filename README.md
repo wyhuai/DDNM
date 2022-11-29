@@ -36,7 +36,7 @@ For general images, download this [model](https://openaipublic.blob.core.windows
 wget https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt
 ```
 ### Quick Start
-Run below command to get results immediately. The results should be in "DDNM/exp/image_samples/demo_sr4".
+Run below command to get results immediately. The results should be in `DDNM/exp/image_samples/demo_sr4`.
 ```
 python main.py --ni -s simplified --config celeba_hq_simple_ddnm.yml --doc celeba_hq --timesteps 100 --eta 0.85 --deg "sr" --sigma_y 0 -i demo_sr4
 ```
@@ -58,9 +58,9 @@ with following options:
 - `IMAGE_FOLDER` is the name of the folder the resulting images will be placed in.
 
 ## 🌟Reproduce the quantitative results in the paper.
-Download this CelebA testset and put it into "DDNM/exp/datasets/celeba/".
+Download this CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
 
-Download this ImageNet testset and put it into "DDNM/exp/datasets/imagenet/".
+Download this ImageNet testset and put it into `DDNM/exp/datasets/imagenet/`.
 
 Run the following command
 ```
@@ -79,11 +79,17 @@ Run the following command
 sh evaluation.sh
 ```
 ### DIY.
-Your may define your own degradation operators to handle new tasks.
+You may use DDNM to restore real-world photos.
+1. If your are using CelebA pretrained models, try this [tool](???) to crop and align your photo.
+2. If there are local artifacts on your photo, try this [tool](???) to draw a mask to cover them, and save this mask to `DDNM/exp/inp_masks/mask.png`. Then run `DDNM/exp/inp_masks/get_mask.py` to generate `mask.npy`. Correspondingly, you need a mask operator as a component of $\mathbf{A}$.
+3. If your photo is faded, you need a grayscale operator as a component of $\mathbf{A}$.
+4. If your photo is blur, you need a downsampler operator as a component of $\mathbf{A}$.
+5. If your photo suffers global artifacts, e.g., jpeg-like artifacts or unkown noise, you need to set a proper `sigma_y`. Tips: You can start with a big one, e.g., `--sigma_y 0.5` then scale it down.
 
+Search `args.deg =='diy'` in `DDNM/runners/diffusion.py` and change the definition of $\mathbf{A}$ correspondingly.
 ## 😊Applying DDNM to Your Own Diffusion Model
 It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following:
-1. Copy these operator implementations to the core diffusion sampling file, then define your task type, e.g., set IR_mode="super resolution".
+1. Copy these operator implementations to the core diffusion sampling file, then define your task type, e.g., set `IR_mode="super resolution"`.
 ```python
 def color2gray(x):
     coef=1/3
