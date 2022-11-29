@@ -47,9 +47,9 @@ The general command to sample from the model is as follows:
 python main.py --ni --simplified --config {CONFIG}.yml --doc {DATASET} --timesteps {STEPS} --eta {ETA} --deg {DEGRADATION} --deg_scale {DEGRADATION_SCALE} --sigma_y {SIGMA_Y} -i {IMAGE_FOLDER}
 ```
 with following options:
-- Use `--simplified` lead to a simplified implementation of DDNM that do not use SVD. Without `--simplified` lead to a SVD-based DDNM implementation.
+- Adding `--simplified` leads to a simplified implementation of DDNM that **do not** use SVD. Without `--simplified` leads to a SVD-based DDNM implementation.
 - `ETA` is the DDIM hyperparameter. (default: `0.85`)
-- `STEPS` controls how many timesteps used.
+- `STEPS` controls how many timesteps used. (default: `100`)
 - `DEGREDATION` is the type of degredation allowed. (One of: `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`)
 - `DEGRADATION_SCALE` is the scale of degredation. e.g., `--deg sr_bicubic --deg_scale 4` lead to 4xSR.
 - `SIGMA_Y` is the noise observed in y.
@@ -57,30 +57,33 @@ with following options:
 - `DATASET` is the name of the dataset used, to determine where the checkpoint file is found.
 - `IMAGE_FOLDER` is the name of the folder the resulting images will be placed in.
 
-For example, for sampling noisy 4x super resolution from the ImageNet 256x256 unconditional model using 20 steps:
-```
-python main.py --ni --config imagenet_256.yml --doc imagenet --timesteps 20 --eta 0.85 --etaB 1 --deg sr4 --sigma_0 0.05
-```
-The generated images are place in the `<exp>/image_samples/{IMAGE_FOLDER}` folder, where `orig_{id}.png`, `y0_{id}.png`, `{id}_-1.png` refer to the original, degraded, restored images respectively.
-
 ## 🌟Reproduce the quantitative results in the paper.
 Download this CelebA testset and put it into "DDNM/exp/datasets/celeba/".
 
 Download this ImageNet testset and put it into "DDNM/exp/datasets/imagenet/".
 
+Run the following command
 ```
-cd DDNM
-sh demo.sh
+sh evaluation.sh
 ```
 
 ## 🔥Real-World Applications.
 ### Real-World Super-Resolution.
+Run the following command
+```
+sh evaluation.sh
+```
 ### Old Photo Restoration.
+Run the following command
+```
+sh evaluation.sh
+```
 ### DIY.
+Your may define your own degradation operators to handle new tasks.
 
 ## 😊Applying DDNM to Your Own Diffusion Model
 It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following:
-1. Copy these operator implementations to the core diffusion sampling file, then define your task type, e.g., IR_mode="super resolution".
+1. Copy these operator implementations to the core diffusion sampling file, then define your task type, e.g., set IR_mode="super resolution".
 ```python
 def color2gray(x):
     coef=1/3
