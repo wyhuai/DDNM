@@ -1,22 +1,56 @@
-# Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model
-
-![image](https://user-images.githubusercontent.com/95485229/198285474-ff2e43de-9fc5-40c4-840b-f902bac4fa3c.png)
-
+# DDNM
 ## 🌟Brief
-This repository contains the code release for ***Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model ([DDNM](https://openreview.net/forum?id=mRieQgMtNTQ))***.
+This repository contains the code release for *Zero Shot Image Restoration Using ***D***enoising ***D***iffusion ***N***ull-Space ***M***odel*.
+
+📖[Paper](https://openreview.net/forum?id=mRieQgMtNTQ)
+
+🖼️[Project](https://openreview.net/forum?id=mRieQgMtNTQ)
 
 ***Supported Applications:***
+- **Old Photo Restoration**🆕
 - Super-Resolution
 - Colorization
 - Inpainting
 - Deblurring
 - Compressed Sensing
-- Old Photo Restoration🌟
 
+![image](https://user-images.githubusercontent.com/95485229/198285474-ff2e43de-9fc5-40c4-840b-f902bac4fa3c.png)
 
 ## 🌟Installation
+### Code
+```
+git clone https://github.com/wyhuai/DDNM.git
+```
+### Environment
+```
+pip install numpy torch blobfile tqdm pyYaml pillow    # e.g. torch 1.7.1+cu110.
+```
+### Pre-Trained Models
+For human face, download this [model](https://image-editing-test-12345.s3-us-west-2.amazonaws.com/checkpoints/celeba_hq.ckpt)(from [SDEdit](https://github.com/ermongroup/SDEdit)) and put it into "DDNM/exp/logs/celeba/". 
+```
+wget https://image-editing-test-12345.s3-us-west-2.amazonaws.com/checkpoints/celeba_hq.ckpt
+```
+
+For general images, download this [model](https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt)(from [guided-diffusion](https://github.com/openai/guided-diffusion)) and put it into "DDNM/exp/logs/imagenet/".
+```
+wget https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt
+```
 
 ## 🌟Evaluation
+### Quick Start
+Run below command to get results immediately. The results should be in "DDNM/exp/image_samples/demo_sr4".
+```
+python main.py --ni -s simplified --config celeba_hq_simple_ddnm.yml --doc celeba_hq --timesteps 100 --eta 0.85 --deg "sr" --sigma_y 0 -i demo_sr4
+```
+### Reproduce the quantitative result in the paper.
+Download this CelebA testset and put it into "DDNM/exp/datasets/celeba/".
+
+Download this ImageNet testset and put it into "DDNM/exp/datasets/imagenet/".
+
+```
+cd DDNM
+sh demo.sh
+```
 
 ## 😊Applying DDNM to Your Own Diffusion Model
 It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following:
@@ -70,7 +104,7 @@ elif IR_mode=="old photo restoration":
 # Core Implementation of DDNM+, simplified denoising solution (Section 3.3).
 # For more accurate denoising, please refer to the paper (Appendix I) and the source code.
 
-def ddnmp_core(x0t, y, sigma_y=0, sigma_t, a_t):
+def ddnm_plus_core(x0t, y, sigma_y=0, sigma_t, a_t):
 
     #Eq 19
     if sigma_t >= a_t*sigma_y: 
@@ -85,7 +119,7 @@ def ddnmp_core(x0t, y, sigma_y=0, sigma_t, a_t):
     
     return x0t, gamma_t
 ```
-
+3. Actually, this repository contains the above simplified implementation: try use "-s simplified". 
 
 
 
