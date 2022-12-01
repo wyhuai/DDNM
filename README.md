@@ -40,7 +40,7 @@ wget https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffu
 ### Quick Start
 Run below command to get 4x SR results immediately. The results should be in `DDNM/exp/image_samples/demo`.
 ```
-python main.py --ni --simplified --config celeba_hq_bs1.yml --path_y celeba_hq --timesteps 100 --eta 0.85 --deg "sr_averagepooling" --deg_scale 4.0 --sigma_y 0 -i demo
+python main.py --ni --simplified --config celeba_hq.yml --path_y celeba_hq --eta 0.85 --deg "sr_averagepooling" --deg_scale 4.0 --sigma_y 0 -i demo
 ```
 
 ## 🌟Setting.
@@ -89,7 +89,7 @@ sh evaluation.sh
 
 Run the following command
 ```
-python main.py --ni --simplified --config celeba_hq_bs1.yml --path_y solvay --timesteps 100 --eta 0.85 --deg "sr_averagepooling" --deg_scale 4.0 --sigma_y 0.1 -i demo
+python main.py --ni --simplified --config celeba_hq.yml --path_y solvay --eta 0.85 --deg "sr_averagepooling" --deg_scale 4.0 --sigma_y 0.1 -i demo
 ```
 ### Old Photo Restoration.
 ![image](https://user-images.githubusercontent.com/95485229/204471696-e27e14f1-c903-4405-a002-2d07a9cf557f.png)
@@ -97,7 +97,7 @@ python main.py --ni --simplified --config celeba_hq_bs1.yml --path_y solvay --ti
 
 Run the following command
 ```
-python main.py --ni --simplified --config celeba_hq_bs1.yml --path_y web_photo --timesteps 100 --eta 0.85 --deg "mask_color_sr" --deg_scale 4.0 --sigma_y 0.1 -i demo
+python main.py --ni --simplified --config celeba_hq.yml --path_y web_photo --eta 0.85 --deg "mask_color_sr" --deg_scale 4.0 --sigma_y 0.1 -i demo
 ```
 ### DIY.
 You may use DDNM to handle self-defined real-world IR tasks.
@@ -177,6 +177,19 @@ def ddnm_plus_core(x0t, y, sigma_y=0, sigma_t, a_t):
 ```
 3. Actually, this repository contains the above simplified implementation: try search `arg.simplified` in `DDNM/runners/diffusion.py` for related codes. 
 
-
-
-
+# References
+If you find this repository useful for your research, please cite the following work.
+```
+@inproceedings{
+anonymous2023ddnm,
+title={Zero-Shot Image Restoration Using Denoising Diffusion Null-Space Model},
+author={Anonymous},
+booktitle={Submitted to The Eleventh International Conference on Learning Representations },
+year={2023},
+url={https://openreview.net/forum?id=mRieQgMtNTQ},
+note={under review}
+}
+```
+This implementation is based on / inspired by:
+- https://github.com/andreas128/RePaint (time-travel trick)
+- https://github.com/bahjat-kawar/ddrm (code structure)
