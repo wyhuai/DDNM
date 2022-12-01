@@ -48,10 +48,11 @@ The detailed sampling command is here:
 python main.py --ni --simplified --config {CONFIG}.yml --path_y {PATH_Y} --eta {ETA} --deg {DEGRADATION} --deg_scale {DEGRADATION_SCALE} --sigma_y {SIGMA_Y} -i {IMAGE_FOLDER}
 ```
 with following options:
-- Adding `--simplified` leads to a simplified implementation of DDNM that **do not** use SVD. Without `--simplified` leads to a SVD-based DDNM implementation.
+with following options:
+- We implement **TWO** versions of DDNM in this repository. One is SVD-based version, which is more precise in solving noisy tasks. Another one is the simplified version, which does not involve SVD and is flexible for users to define their own degradations for different tasks. Adding `--simplified` leads to the simplified DDNM. Without `--simplified` leads to the SVD-based DDNM.
 - `PATH_Y` is the folder name of the test dataset, in `DDNM/exp/datasets`.
 - `ETA` is the DDIM hyperparameter. (default: `0.85`)
-- `DEGREDATION` is the type of degredation allowed. (one of: `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`, `mask_color_sr`, `diy`)
+- `DEGREDATION` is the supported tasks including `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`, `mask_color_sr`, and user-defined `diy`.
 - `DEGRADATION_SCALE` is the scale of degredation. e.g., `--deg sr_bicubic --deg_scale 4` lead to 4xSR.
 - `SIGMA_Y` is the noise observed in y.
 - `CONFIG` is the name of the config file (see `configs/` for a list), including hyperparameters such as batch size and network architectures.
