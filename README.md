@@ -4,9 +4,9 @@ This repository contains the code release for *Zero Shot Image Restoration Using
 
 DDNM can solve various image restoration tasks **without any optimization or finetuning! Yes, in a zero-shot manner**.
 
-📖[Paper](???)
+📖[Paper](????)
 
-🖼️[Project](???)
+🖼️[Project](????)
 
 ***Supported Applications:***
 - **Old Photo Restoration**🆕
