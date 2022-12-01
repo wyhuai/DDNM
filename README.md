@@ -98,7 +98,7 @@ Run the following command
 python main.py --ni --simplified --config celeba_hq.yml --path_y web_photo --eta 0.85 --deg "mask_color_sr" --deg_scale 4.0 --sigma_y 0.1 -i demo
 ```
 ### Try your own photos.
-You may use DDNM to restore your own degraded images. DDNM provide full flexibility for you to define the degradation operator and the noise level. Note that these definitions are critical for a good results. You may reference the following guidance.
+You may use DDNM to restore your own degraded images. DDNM provides full flexibility for you to define the degradation operator and the noise level. Note that these definitions are critical for a good results. You may reference the following guidance.
 1. If your are using CelebA pretrained models, try this [tool](???) to crop and align your photo.
 2. If there are local artifacts on your photo, try this [tool](???) to draw a mask to cover them, and save this mask to `DDNM/exp/inp_masks/mask.png`. Then run `DDNM/exp/inp_masks/get_mask.py` to generate `mask.npy`.
 3. If your photo is faded, you need a grayscale operator as part of the degradation.
