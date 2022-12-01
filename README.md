@@ -66,8 +66,8 @@ sampling:
     
 time_travel:
     T_sampling: 100     # sampling steps
-    travel_length: 1    # time-travel parameters $l$ and $s$, see section 3.3 of the paper.
-    travel_repeat: 1    # time-travel parameters $r$, see section 3.3 of the paper.
+    travel_length: 1    # time-travel parameters l and s, see section 3.3 of the paper.
+    travel_repeat: 1    # time-travel parameter r, see section 3.3 of the paper.
 ```
 
 ## 🌟Reproduce The Quantitative Tesults In The Paper.
@@ -83,7 +83,7 @@ sh evaluation.sh
 ## 🔥Real-World Applications.
 ### Real-World Super-Resolution.
 ![orig_62](https://user-images.githubusercontent.com/95485229/204471148-bf155c60-c7b3-4c3a-898c-859cb9d0d723.png)
-![真实场景_noise](https://user-images.githubusercontent.com/95485229/204470898-cd729024-c2de-4088-b35d-6b31b8863dae.gif)
+![noise](https://user-images.githubusercontent.com/95485229/204470898-cd729024-c2de-4088-b35d-6b31b8863dae.gif)
 
 
 
@@ -93,7 +93,7 @@ python main.py --ni --simplified --config celeba_hq_bs1.yml --path_y solvay --ti
 ```
 ### Old Photo Restoration.
 ![image](https://user-images.githubusercontent.com/95485229/204471696-e27e14f1-c903-4405-a002-2d07a9cf557f.png)
-![老照片_noise](https://user-images.githubusercontent.com/95485229/204470916-109a068d-5623-460b-be33-5b6b304e52d8.gif)
+![oldnoise](https://user-images.githubusercontent.com/95485229/204470916-109a068d-5623-460b-be33-5b6b304e52d8.gif)
 
 Run the following command
 ```
