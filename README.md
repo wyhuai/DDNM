@@ -59,6 +59,17 @@ with following options:
 - `DATASET` is the name of the dataset used, to determine where the checkpoint file is found.
 - `IMAGE_FOLDER` is the folder name of the results.
 
+For the config files, e.g., celeba_hq.yml, you may change following properties:
+```
+sampling:
+    batch_size: 1
+    
+time_travel:
+    T_sampling: 100     # sampling steps
+    travel_length: 1    # time-travel parameters $l$ and $s$, see section 3.3 of the paper.
+    travel_repeat: 1    # time-travel parameters $r$, see section 3.3 of the paper.
+```
+
 ## 🌟Reproduce The Quantitative Tesults In The Paper.
 Download this CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
 
