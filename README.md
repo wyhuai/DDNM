@@ -103,7 +103,7 @@ You may use DDNM to restore your own degraded images. DDNM provide full flexibil
 3. If your photo is faded, you need a grayscale operator as part of the degradation.
 4. If your photo is blur, you need a downsampler operator as part of the degradation. Also, you need to set a proper SR scale `--deg_scale`.
 5. If your photo suffers global artifacts, e.g., jpeg-like artifacts or unkown noise, you need to set a proper `sigma_y` to remove these artifacts.
-6. Search `args.deg =='diy'` in `DDNM/runners/diffusion.py` and change the definition of $\mathbf{A}$ correspondingly.
+6. Search `args.deg =='diy'` in `DDNM/guided_diffusion/diffusion.py` and change the definition of $\mathbf{A}$ correspondingly.
 Then run
 ```
 python main.py --ni --simplified --config celeba_hq.yml --path_y {YOUR_OWN_PATH} --eta 0.85 --deg "diy" --deg_scale {YOUR_OWN_SCALE} --sigma_y {YOUR_OWN_LEVEL} -i diy
@@ -176,7 +176,7 @@ def ddnm_plus_core(x0t, y, sigma_y=0, sigma_t, a_t):
     
     return x0t, gamma_t
 ```
-3. Actually, this repository contains the above simplified implementation: try search `arg.simplified` in `DDNM/runners/diffusion.py` for related codes. 
+3. Actually, this repository contains the above simplified implementation: try search `arg.simplified` in `DDNM/guided_diffusion/diffusion.py` for related codes. 
 
 # References
 If you find this repository useful for your research, please cite the following work.
