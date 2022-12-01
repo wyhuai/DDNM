@@ -95,7 +95,7 @@ python main.py --ni --simplified --config celeba_hq.yml --path_y solvay --eta 0.
 
 Run the following command
 ```
-python main.py --ni --simplified --config celeba_hq.yml --path_y web_photo --eta 0.85 --deg "mask_color_sr" --deg_scale 4.0 --sigma_y 0.1 -i demo
+python main.py --ni --simplified --config oldphoto.yml --path_y oldphoto --eta 0.85 --deg "mask_color_sr" --deg_scale 4.0 --sigma_y 0.1 -i demo
 ```
 ### Try your own photos.
 You may use DDNM to restore your own degraded images. DDNM provides full flexibility for you to define the degradation operator and the noise level. Note that these definitions are critical for a good results. You may reference the following guidance.
