@@ -194,5 +194,6 @@ note={under review}
 }
 ```
 This implementation is based on / inspired by:
+- https://github.com/wyhuai/RND (null-space learning)
 - https://github.com/andreas128/RePaint (time-travel trick)
 - https://github.com/bahjat-kawar/ddrm (code structure)
