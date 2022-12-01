@@ -49,7 +49,7 @@ python main.py --ni --simplified --config {CONFIG}.yml --path_y {PATH_Y} --eta {
 ```
 with following options:
 with following options:
-- We implement **TWO** versions of DDNM in this repository. One is SVD-based version, which is more precise in solving noisy tasks. Another one is the simplified version, which does not involve SVD and is flexible for users to define their own degradations for different tasks. Adding `--simplified` leads to the simplified DDNM. Without `--simplified` leads to the SVD-based DDNM.
+- We implement **TWO** versions of DDNM in this repository. One is SVD-based version, which is more precise in solving noisy tasks. Another one is the simplified version, which does not involve SVD and is flexible for users to define their own degradations for different tasks. Use `--simplified` leads to the simplified DDNM. Without `--simplified` leads to the SVD-based DDNM.
 - `PATH_Y` is the folder name of the test dataset, in `DDNM/exp/datasets`.
 - `ETA` is the DDIM hyperparameter. (default: `0.85`)
 - `DEGREDATION` is the supported tasks including `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`, `mask_color_sr`, and user-defined `diy`.
