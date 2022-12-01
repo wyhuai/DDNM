@@ -75,10 +75,11 @@ Download this CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
 
 Download this ImageNet testset and put it into `DDNM/exp/datasets/imagenet/`.
 
-Run the following command
+Run the following command. You may increase the batch_size to accelerate evaluation.
 ```
 sh evaluation.sh
 ```
+
 
 ## 🔥Real-World Applications.
 ### Demo: Real-World Super-Resolution.
