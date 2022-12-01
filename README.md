@@ -28,12 +28,11 @@ git clone https://github.com/wyhuai/DDNM.git
 pip install numpy torch blobfile tqdm pyYaml pillow    # e.g. torch 1.7.1+cu110.
 ```
 ### Pre-Trained Models
-For human face, download this [model](https://image-editing-test-12345.s3-us-west-2.amazonaws.com/checkpoints/celeba_hq.ckpt)(from [SDEdit](https://github.com/ermongroup/SDEdit)) and put it into "DDNM/exp/logs/celeba/". 
+To restore human face images, download this [model](https://image-editing-test-12345.s3-us-west-2.amazonaws.com/checkpoints/celeba_hq.ckpt)(from [SDEdit](https://github.com/ermongroup/SDEdit)) and put it into "DDNM/exp/logs/celeba/". 
 ```
 wget https://image-editing-test-12345.s3-us-west-2.amazonaws.com/checkpoints/celeba_hq.ckpt
 ```
-
-For general images, download this [model](https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt)(from [guided-diffusion](https://github.com/openai/guided-diffusion)) and put it into "DDNM/exp/logs/imagenet/".
+To restore general images, download this [model](https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt)(from [guided-diffusion](https://github.com/openai/guided-diffusion)) and put it into "DDNM/exp/logs/imagenet/".
 ```
 wget https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion_uncond.pt
 ```
@@ -81,33 +80,35 @@ sh evaluation.sh
 ```
 
 ## 🔥Real-World Applications.
-### Real-World Super-Resolution.
+### Demo: Real-World Super-Resolution.
 ![orig_62](https://user-images.githubusercontent.com/95485229/204471148-bf155c60-c7b3-4c3a-898c-859cb9d0d723.png)
-![noise](https://user-images.githubusercontent.com/95485229/204470898-cd729024-c2de-4088-b35d-6b31b8863dae.gif)
-
-
+![00000](https://user-images.githubusercontent.com/95485229/204971948-7564b536-b562-4187-9d8c-d96db4c55f7c.png)
 
 Run the following command
 ```
 python main.py --ni --simplified --config celeba_hq.yml --path_y solvay --eta 0.85 --deg "sr_averagepooling" --deg_scale 4.0 --sigma_y 0.1 -i demo
 ```
-### Old Photo Restoration.
-![image](https://user-images.githubusercontent.com/95485229/204471696-e27e14f1-c903-4405-a002-2d07a9cf557f.png)
-![oldnoise](https://user-images.githubusercontent.com/95485229/204470916-109a068d-5623-460b-be33-5b6b304e52d8.gif)
+### Demo: Old Photo Restoration.
+![image](https://user-images.githubusercontent.com/95485229/204973149-4818426b-89af-410c-b1b7-f26b8f65358b.png)
+![图片1](https://user-images.githubusercontent.com/95485229/204973288-0f245e93-8980-4a32-a5e9-7f2bfe58d8eb.png)
 
 Run the following command
 ```
 python main.py --ni --simplified --config celeba_hq.yml --path_y web_photo --eta 0.85 --deg "mask_color_sr" --deg_scale 4.0 --sigma_y 0.1 -i demo
 ```
-### DIY.
-You may use DDNM to handle self-defined real-world IR tasks.
+### Try your own photos.
+You may use DDNM to restore your own degraded images. DDNM provide full flexibility for you to define the degradation operator and the noise level. Note that these definitions are critical for a good results. You may reference the following guidance.
 1. If your are using CelebA pretrained models, try this [tool](???) to crop and align your photo.
-2. If there are local artifacts on your photo, try this [tool](???) to draw a mask to cover them, and save this mask to `DDNM/exp/inp_masks/mask.png`. Then run `DDNM/exp/inp_masks/get_mask.py` to generate `mask.npy`. Correspondingly, you need a mask operator as a component of $\mathbf{A}$.
-3. If your photo is faded, you need a grayscale operator as a component of $\mathbf{A}$.
-4. If your photo is blur, you need a downsampler operator as a component of $\mathbf{A}$ and need to set a proper SR scale `--deg_scale`.
-5. If your photo suffers global artifacts, e.g., jpeg-like artifacts or unkown noise, you need to set a proper `sigma_y`. Tips: You can start with a big one, e.g., `--sigma_y 0.5` then scale it down.
+2. If there are local artifacts on your photo, try this [tool](???) to draw a mask to cover them, and save this mask to `DDNM/exp/inp_masks/mask.png`. Then run `DDNM/exp/inp_masks/get_mask.py` to generate `mask.npy`.
+3. If your photo is faded, you need a grayscale operator as part of the degradation.
+4. If your photo is blur, you need a downsampler operator as part of the degradation. Also, you need to set a proper SR scale `--deg_scale`.
+5. If your photo suffers global artifacts, e.g., jpeg-like artifacts or unkown noise, you need to set a proper `sigma_y` to remove these artifacts.
+6. Search `args.deg =='diy'` in `DDNM/runners/diffusion.py` and change the definition of $\mathbf{A}$ correspondingly.
+Then run
+```
+python main.py --ni --simplified --config celeba_hq.yml --path_y {YOUR_OWN_PATH} --eta 0.85 --deg "diy" --deg_scale {YOUR_OWN_SCALE} --sigma_y {YOUR_OWN_LEVEL} -i diy
+```
 
-Search `args.deg =='diy'` in `DDNM/runners/diffusion.py` and change the definition of $\mathbf{A}$ correspondingly.
 ## 😊Applying DDNM to Your Own Diffusion Model
 It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following:
 1. Copy these operator implementations to the core diffusion sampling file, then define your task type, e.g., set `IR_mode="super resolution"`.
