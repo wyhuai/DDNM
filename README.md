@@ -69,7 +69,8 @@ time_travel:
     travel_repeat: 1    # time-travel parameter r, see section 3.3 of the paper.
 ```
 
-## 🌟Reproduce The Quantitative Tesults In The Paper.
+## 🌟Reproduce The Results In The Paper.
+### Quantitative Evaluation
 Download this CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
 
 Download this ImageNet testset and put it into `DDNM/exp/datasets/imagenet/`.
@@ -78,7 +79,8 @@ Run the following command. You may increase the batch_size to accelerate evaluat
 ```
 sh evaluation.sh
 ```
-
+### High-Quality Results
+The High-Quality results presented in the front figure are mostly generated using the time-travel trick based on DDPM sampling (DDPM is not implemented yet, but we will update it soon!). By the way, we find that using DDIM (without time-travel) usually yields better results than DDPM (without time-travel). However, DDPM (with time-travel) yields better results than DDIM (with time-travel).
 
 ## 🔥Real-World Applications.
 ### Demo: Real-World Super-Resolution.
