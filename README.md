@@ -70,9 +70,9 @@ time_travel:
 
 ## 🌟Reproduce The Results In The Paper.
 ### Quantitative Evaluation
-Download this CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
+Download this [CelebA testset](???)(we will upload it soon) and put it into `DDNM/exp/datasets/celeba/`.
 
-Download this ImageNet testset and put it into `DDNM/exp/datasets/imagenet/`.
+Download this [ImageNet testset](???)(we will upload it soon) and put it into `DDNM/exp/datasets/imagenet/`.
 
 Run the following command. You may increase the batch_size to accelerate evaluation.
 ```
