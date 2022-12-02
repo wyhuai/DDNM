@@ -48,7 +48,6 @@ The detailed sampling command is here:
 python main.py --ni --simplified --config {CONFIG}.yml --path_y {PATH_Y} --eta {ETA} --deg {DEGRADATION} --deg_scale {DEGRADATION_SCALE} --sigma_y {SIGMA_Y} -i {IMAGE_FOLDER}
 ```
 with following options:
-with following options:
 - We implement **TWO** versions of DDNM in this repository. One is SVD-based version, which is more precise in solving noisy tasks. Another one is the simplified version, which does not involve SVD and is flexible for users to define their own degradations for different tasks. Use `--simplified` leads to the simplified DDNM. Without `--simplified` leads to the SVD-based DDNM.
 - `PATH_Y` is the folder name of the test dataset, in `DDNM/exp/datasets`.
 - `ETA` is the DDIM hyperparameter. (default: `0.85`)
