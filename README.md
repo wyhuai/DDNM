@@ -6,7 +6,7 @@ DDNM can solve various image restoration tasks **without any optimization or fin
 
 📖[Paper](https://arxiv.org/pdf/2212.00490.pdf)
 
-🖼️[Project](https://wyhuai.github.io/ddnm.io/) (Theory & Video demonstrations)
+🖼️[Project](https://wyhuai.github.io/ddnm.io/) (Theory & Video demonstrations🔥)
 
 ***Supported Applications:***
 - **Old Photo Restoration**🆕
