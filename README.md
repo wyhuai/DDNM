@@ -184,14 +184,11 @@ def ddnm_plus_core(x0t, y, sigma_y=0, sigma_t, a_t):
 # References
 If you find this repository useful for your research, please cite the following work.
 ```
-@inproceedings{
-anonymous2023ddnm,
-title={Zero-Shot Image Restoration Using Denoising Diffusion Null-Space Model},
-author={Anonymous},
-booktitle={Submitted to The Eleventh International Conference on Learning Representations },
-year={2023},
-url={https://openreview.net/forum?id=mRieQgMtNTQ},
-note={under review}
+@article{wang2022ddnm,
+title={Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model},
+author={Yinhuai, Wang and Jiwen, Yu and Jian, Zhang},
+journal={arXiv:2212.00490},
+year={2022}}
 }
 ```
 This implementation is based on / inspired by:
