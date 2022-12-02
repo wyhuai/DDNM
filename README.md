@@ -55,8 +55,7 @@ with following options:
 - `DEGREDATION` is the supported tasks including `cs_walshhadamard`, `cs_blockbased`, `inpainting`, `denoising`, `deblur_uni`, `deblur_gauss`, `deblur_aniso`, `sr_averagepooling`,`sr_bicubic`, `colorization`, `mask_color_sr`, and user-defined `diy`.
 - `DEGRADATION_SCALE` is the scale of degredation. e.g., `--deg sr_bicubic --deg_scale 4` lead to 4xSR.
 - `SIGMA_Y` is the noise observed in y.
-- `CONFIG` is the name of the config file (see `configs/` for a list), including hyperparameters such as batch size and network architectures.
-- `DATASET` is the name of the dataset used, to determine where the checkpoint file is found.
+- `CONFIG` is the name of the config file (see `configs/` for a list), including hyperparameters such as batch size and sampling step.
 - `IMAGE_FOLDER` is the folder name of the results.
 
 For the config files, e.g., celeba_hq.yml, you may change following properties:
