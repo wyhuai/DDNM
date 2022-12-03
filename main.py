@@ -80,6 +80,10 @@ def parse_args_and_config():
         default="gaussian",
         help="gaussian | 3d_gaussian | poisson | speckle"
     )
+    parser.add_argument(
+        "--add_noise",
+        action="store_true"
+    )
 
     
 
