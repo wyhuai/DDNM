@@ -70,7 +70,7 @@ time_travel:
 
 ## 🌟Reproduce The Results In The Paper.
 ### Quantitative Evaluation
-Dataset download link: [[Goodle drive](https://drive.google.com/drive/folders/1cSCTaBtnL7OIKXT4SVME88Vtk4uDd_u4?usp=sharing)] [[Baidu drive](https://pan.baidu.com/s/1tQaWBqIhE671v3rrB-Z2mQ?pwd=twq0)]
+Dataset download link: [[Google drive](https://drive.google.com/drive/folders/1cSCTaBtnL7OIKXT4SVME88Vtk4uDd_u4?usp=sharing)] [[Baidu drive](https://pan.baidu.com/s/1tQaWBqIhE671v3rrB-Z2mQ?pwd=twq0)]
 
 Download the CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
 
