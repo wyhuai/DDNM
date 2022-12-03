@@ -308,8 +308,9 @@ class Diffusion(object):
             if config.sampling.batch_size!=1:
                 print("ERROR: please change the config file to set batch size as 1")
                 quit()
-                
-            #y = get_gaussian_noisy_img(y, sigma_y) # for denoising test
+            
+            if self.args.add_noise:
+                y = get_gaussian_noisy_img(y, sigma_y) # for denoising test
 
             Apy = Ap(y)
 
@@ -551,7 +552,8 @@ class Diffusion(object):
                 h = w = int(hw ** 0.5)
                 y = y.reshape((b, 3, h, w))
                 
-            #y = get_gaussian_noisy_img(y, sigma_y) # for denoising test
+            if self.args.add_noise:
+                y = get_gaussian_noisy_img(y, sigma_y) # for denoising test
             
             y = y.reshape((b, hwc))
 
