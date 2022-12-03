@@ -70,9 +70,11 @@ time_travel:
 
 ## 🌟Reproduce The Results In The Paper.
 ### Quantitative Evaluation
-Download this [CelebA testset](???)(we will upload it soon) and put it into `DDNM/exp/datasets/celeba/`.
+Dataset download link: [[Goodle drive](https://drive.google.com/drive/folders/1cSCTaBtnL7OIKXT4SVME88Vtk4uDd_u4?usp=sharing)] [[Baidu drive](https://pan.baidu.com/s/1tQaWBqIhE671v3rrB-Z2mQ?pwd=twq0)]
 
-Download this [ImageNet testset](???)(we will upload it soon) and put it into `DDNM/exp/datasets/imagenet/`.
+Download the CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
+
+Download the ImageNet testset and put it into `DDNM/exp/datasets/imagenet/`.
 
 Run the following command. You may increase the batch_size to accelerate evaluation.
 ```
