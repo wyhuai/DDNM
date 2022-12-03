@@ -74,7 +74,7 @@ Dataset download link: [[Google drive](https://drive.google.com/drive/folders/1c
 
 Download the CelebA testset and put it into `DDNM/exp/datasets/celeba/`.
 
-Download the ImageNet testset and put it into `DDNM/exp/datasets/imagenet/`.
+Download the ImageNet testset and put it into `DDNM/exp/datasets/imagenet/` and replace the file `DDNM/exp/imagenet_val_1k.txt`.
 
 Run the following command. You may increase the batch_size to accelerate evaluation.
 ```
