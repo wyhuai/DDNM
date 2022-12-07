@@ -2,7 +2,7 @@
 ## 🌟Brief
 This repository contains the code release for *Zero Shot Image Restoration Using ***D***enoising ***D***iffusion ***N***ull-Space ***M***odel*.
 
-DDNM can solve various image restoration tasks **without any optimization or finetuning! Yes, in a zero-shot manner**.
+DDNM can solve various image restoration tasks **without any optimization or training! Yes, in a zero-shot manner**.
 
 📖[Paper](https://arxiv.org/pdf/2212.00490.pdf)
 
