@@ -350,7 +350,7 @@ class Diffusion(object):
                 # reverse diffusion sampling
                 for i, j in tqdm.tqdm(time_pairs):
                     i, j = i*skip, j*skip
-                    if j<0: j=0 
+                    if j<0: j=-1 
 
                     if j < i: # normal sampling 
                         t = (torch.ones(n) * i).to(x.device)
