@@ -35,7 +35,7 @@ def ddnm_diffusion(x, model, b, A_funcs, y, cls_fn=None, classes=None, config=No
         # reverse diffusion sampling
         for i, j in tqdm(time_pairs):
             i, j = i*skip, j*skip
-            if j<0: j=0 
+            if j<0: j=-1 
 
             if j < i: # normal sampling 
                 t = (torch.ones(n) * i).to(x.device)
@@ -98,7 +98,7 @@ def ddnm_plus_diffusion(x, model, b, A_funcs, y, sigma_y, cls_fn=None, classes=N
         # reverse diffusion sampling
         for i, j in tqdm(time_pairs):
             i, j = i*skip, j*skip
-            if j<0: j=0 
+            if j<0: j=-1 
 
             if j < i: # normal sampling 
                 t = (torch.ones(n) * i).to(x.device)
