@@ -20,7 +20,8 @@ This repository contains the code release for *Zero Shot Image Restoration Using
 - Compressed Sensing
 
 
-![image](https://user-images.githubusercontent.com/95485229/206332871-63a08ba1-0acf-4db1-8e39-b7248780e549.png)
+![front](https://user-images.githubusercontent.com/95485229/206398186-bc7128d1-9fa9-40c8-8b51-36869b17b1bd.png)
+
 
 ## 🧩Pending Upgrade
 - Codes for yielding High-Quality images
