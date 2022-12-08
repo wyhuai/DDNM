@@ -17,7 +17,9 @@ DDNM can solve various image restoration tasks **without any optimization or tra
 - Deblurring
 - Compressed Sensing
 
-![image](https://user-images.githubusercontent.com/95485229/198285474-ff2e43de-9fc5-40c4-840b-f902bac4fa3c.png)
+
+![image](https://user-images.githubusercontent.com/95485229/206332871-63a08ba1-0acf-4db1-8e39-b7248780e549.png)
+
 
 ## 🌟Installation
 ### Code
