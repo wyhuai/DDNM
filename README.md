@@ -1,12 +1,13 @@
-# DDNM
-## 🌟Brief
-This repository contains the code release for *Zero Shot Image Restoration Using ***D***enoising ***D***iffusion ***N***ull-Space ***M***odel*.
+# Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model
 
-DDNM can solve various image restoration tasks **without any optimization or training! Yes, in a zero-shot manner**.
+[Yinhuai Wang*](https://scholar.google.com/citations?user=Ltv5xvcAAAAJ&hl=en), [Jiwen Yu*](https://scholar.google.com.hk/citations?user=uoRPLHIAAAAJ), [Jian Zhang](https://jianzhang.tech/)
 
-📖[Paper](https://arxiv.org/pdf/2212.00490.pdf)
+Peking University and PCL
 
-🖼️[Project](https://wyhuai.github.io/ddnm.io/) (Theory & Video demonstrations🔥)
+📖[Paper](https://arxiv.org/pdf/2212.00490.pdf)|🖼️[Project](https://wyhuai.github.io/ddnm.io/) (Theory & Video demonstrations🔥)
+
+This repository contains the code release for *Zero Shot Image Restoration Using ***D***enoising ***D***iffusion ***N***ull-Space ***M***odel*. **DDNM** can solve various image restoration tasks **without any optimization or training! Yes, in a zero-shot manner**.
+
 
 ***Supported Applications:***
 - **Arbitrary Size**🆕
