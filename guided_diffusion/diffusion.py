@@ -379,7 +379,7 @@ class Diffusion(object):
                         # Eq. 17
                         x0_t_hat = x0_t - lambda_t*Ap(A(x0_t) - y)
 
-                        eta = 0.85
+                        eta = self.args.eta
 
                         c1 = (1 - at_next).sqrt() * eta
                         c2 = (1 - at_next).sqrt() * ((1 - eta ** 2) ** 0.5)
