@@ -22,7 +22,7 @@ This repository contains the code release for *Zero Shot Image Restoration Using
 
 ![image](https://user-images.githubusercontent.com/95485229/206332871-63a08ba1-0acf-4db1-8e39-b7248780e549.png)
 
-## 🌟Pending Upgrade
+## 🧩Pending Upgrade
 - Codes for yielding High-Quality images
 - Mask-Shift trick to support arbitrary image size 
 
