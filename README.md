@@ -117,7 +117,8 @@ python main.py --ni --simplified --config celeba_hq.yml --path_y {YOUR_OWN_PATH}
 ```
 
 ## 🆕DDNM for Arbitrary Size
-![123456](https://user-images.githubusercontent.com/95485229/206181069-0f134804-63e3-4ba1-9ad1-0a4ccd9dd72e.png)![00100 (1)](https://user-images.githubusercontent.com/95485229/206181086-eda9b1a3-8d5c-4b0a-8ea9-a3c7f836995a.png)
+![123456](https://user-images.githubusercontent.com/95485229/206181069-0f134804-63e3-4ba1-9ad1-0a4ccd9dd72e.png)![image](https://user-images.githubusercontent.com/95485229/206333186-c240fad9-3602-46f5-8bc7-a66e8c463196.png)
+
 Above we show an example of using DDNM to SR a 64x256 input image into a 256x1024 result. We call this newly conceived method the **Mask-Shift trick**, which is not yet implemented in this repository. Details of the **Mask-Shift** trick can be found in the updated version of our [paper](https://arxiv.org/pdf/2212.00490.pdf), section 7.
 
 ## 😊Applying DDNM to Your Own Diffusion Model
