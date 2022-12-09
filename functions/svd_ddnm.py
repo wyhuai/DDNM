@@ -16,7 +16,7 @@ def inverse_data_transform(x):
     x = (x + 1.0) / 2.0
     return torch.clamp(x, 0.0, 1.0)
 
-def ddnm_diffusion(x, model, b, A_funcs, y, cls_fn=None, classes=None, config=None):
+def ddnm_diffusion(x, model, b, eta, A_funcs, y, cls_fn=None, classes=None, config=None):
     with torch.no_grad():
 
         # setup iteration variables
@@ -60,8 +60,6 @@ def ddnm_diffusion(x, model, b, A_funcs, y, cls_fn=None, classes=None, config=No
                     A_funcs.A(x0_t.reshape(x0_t.size(0), -1)) - y.reshape(y.size(0), -1)
                 ).reshape(*x0_t.size())
 
-                eta = 0.85
-
                 c1 = (1 - at_next).sqrt() * eta
                 c2 = (1 - at_next).sqrt() * ((1 - eta ** 2) ** 0.5)
                 xt_next = at_next.sqrt() * x0_t_hat + c1 * torch.randn_like(x0_t) + c2 * et
@@ -79,7 +77,7 @@ def ddnm_diffusion(x, model, b, A_funcs, y, cls_fn=None, classes=None, config=No
 
     return [xs[-1]], [x0_preds[-1]]
 
-def ddnm_plus_diffusion(x, model, b, A_funcs, y, sigma_y, cls_fn=None, classes=None, config=None):
+def ddnm_plus_diffusion(x, model, b, eta, A_funcs, y, sigma_y, cls_fn=None, classes=None, config=None):
     with torch.no_grad():
 
         # setup iteration variables
@@ -120,7 +118,6 @@ def ddnm_plus_diffusion(x, model, b, A_funcs, y, sigma_y, cls_fn=None, classes=N
                 # Eq. 12
                 x0_t = (xt - et * (1 - at).sqrt()) / at.sqrt()
 
-                eta = 0.85
                 sigma_t = (1 - at_next).sqrt()[0, 0, 0, 0]
 
                 # Eq. 17
