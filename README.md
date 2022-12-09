@@ -126,7 +126,18 @@ python main.py --ni --simplified --config celeba_hq.yml --path_y {YOUR_OWN_PATH}
 ## 🆕DDNM for Arbitrary Size
 ![123456](https://user-images.githubusercontent.com/95485229/206181069-0f134804-63e3-4ba1-9ad1-0a4ccd9dd72e.png)![image](https://user-images.githubusercontent.com/95485229/206333186-c240fad9-3602-46f5-8bc7-a66e8c463196.png)
 
-Above we show an example of using DDNM to SR a 64x256 input image into a 256x1024 result. We call this newly conceived method the **Mask-Shift trick**, which is not yet implemented in this repository. Details of the **Mask-Shift** trick can be found in the updated version of our [paper](https://arxiv.org/pdf/2212.00490.pdf), section 7.
+Above we show an example of using DDNM to SR a 64x256 input image into a 256x1024 result. We call this newly conceived method the **Mask-Shift trick**, whose details can be found in the updated version of our [paper](https://arxiv.org/pdf/2212.00490.pdf), section 7.
+
+We implement the **Mask-Shift trick** in the folder `hq_demo`, based on [RePaint](https://github.com/andreas128/RePaint). To try this demo, you need to download the pre-trained models:
+```
+wget https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_classifier.pt
+wget https://openaipublic.blob.core.windows.net/diffusion/jul-2021/256x256_diffusion.pt
+```
+and put it to `hq_demo/data/pretrained`. Then run
+```
+cd hq_demo
+sh evaluation.sh
+```
 
 ## 😊Applying DDNM to Your Own Diffusion Model
 It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following:
