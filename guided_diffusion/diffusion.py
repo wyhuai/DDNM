@@ -289,8 +289,8 @@ class Diffusion(object):
             A = lambda z: A3(A2(A1(z)))
             Ap = lambda z: A1p(A2p(A3p(z)))
         else:
-            print("ERROR: degradation type not supported")
-            quit()
+            raise NotImplementedError("degradation type not supported")
+
         args.sigma_y = 2 * args.sigma_y #to account for scaling to [-1,1]
         sigma_y = args.sigma_y
         
@@ -306,11 +306,7 @@ class Diffusion(object):
             y = A(x_orig)
 
             if config.sampling.batch_size!=1:
-                print("ERROR: please change the config file to set batch size as 1")
-                quit()
-            
-            if self.args.add_noise:
-                y = get_gaussian_noisy_img(y, sigma_y) # for denoising test
+                raise ValueError("please change the config file to set batch size as 1")
 
             Apy = Ap(y)
 
@@ -524,8 +520,7 @@ class Diffusion(object):
             A_funcs = Deblurring2D(kernel1 / kernel1.sum(), kernel2 / kernel2.sum(), config.data.channels,
                                    self.config.data.image_size, self.device)
         else:
-            print("ERROR: degradation type not supported")
-            quit()
+            raise ValueError("degradation type not supported")
         args.sigma_y = 2 * args.sigma_y #to account for scaling to [-1,1]
         sigma_y = args.sigma_y
         
@@ -552,8 +547,8 @@ class Diffusion(object):
                 h = w = int(hw ** 0.5)
                 y = y.reshape((b, 3, h, w))
                 
-            if self.args.add_noise:
-                y = get_gaussian_noisy_img(y, sigma_y) # for denoising test
+            if self.args.add_noise: # for denoising test
+                y = get_gaussian_noisy_img(y, sigma_y) 
             
             y = y.reshape((b, hwc))
 
@@ -589,10 +584,10 @@ class Diffusion(object):
             )
 
             with torch.no_grad():
-                if sigma_y==0.: #noise-free case, turn to ddnm
-                    x, _ = ddnm_diffusion(x, model, self.betas, A_funcs, y, cls_fn=cls_fn, classes=classes, config=config)
-                else: #noisy case, turn to ddnm+
-                    x, _ = ddnm_plus_diffusion(x, model, self.betas, A_funcs, y, sigma_y, cls_fn=cls_fn, classes=classes, config=config)
+                if sigma_y==0.: # noise-free case, turn to ddnm
+                    x, _ = ddnm_diffusion(x, model, self.betas, self.args.eta, A_funcs, y, cls_fn=cls_fn, classes=classes, config=config)
+                else: # noisy case, turn to ddnm+
+                    x, _ = ddnm_plus_diffusion(x, model, self.betas, self.args.eta, A_funcs, y, sigma_y, cls_fn=cls_fn, classes=classes, config=config)
 
             x = [inverse_data_transform(config, xi) for xi in x]
 
