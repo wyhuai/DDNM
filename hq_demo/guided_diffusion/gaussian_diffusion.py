@@ -580,9 +580,12 @@ class GaussianDiffusion:
         if H_target<256 or W_target<256:
             raise ValueError("Please set a larger SR scale")
 
-        image_savepath = os.path.join('results/'+model_kwargs['save_path']+'/final')
+        image_savepath = os.path.join('results/'+model_kwargs['save_path']+'/Ap')
         os.makedirs(image_savepath, exist_ok=True)
-        save_image(Ap(y_temp)[0], image_savepath, 1)
+        save_image(Ap(y_temp)[0], image_savepath, 0)
+        
+        image_savepath = os.path.join('results/'+model_kwargs['save_path']+'/y')
+        os.makedirs(image_savepath, exist_ok=True)
         save_image(y_temp[0], image_savepath, 0)
 
         finalresult = torch.zeros_like(Ap(y_temp))
@@ -674,7 +677,7 @@ class GaussianDiffusion:
         # finish!
         image_savepath = os.path.join('results/'+model_kwargs['save_path']+'/final')
         os.makedirs(image_savepath, exist_ok=True)
-        save_image(finalresult[0], image_savepath, 3)
+        save_image(finalresult[0], image_savepath, 0)
 
         out["sample"] = finalresult
         return out
