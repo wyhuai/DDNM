@@ -14,6 +14,7 @@ This repository contains the code release for *Zero Shot Image Restoration Using
 - **Arbitrary Size**🆕
 - **Old Photo Restoration**🆕
 - Super-Resolution
+- Denoising
 - Colorization
 - Inpainting
 - Deblurring
@@ -22,6 +23,8 @@ This repository contains the code release for *Zero Shot Image Restoration Using
 
 ![front](https://user-images.githubusercontent.com/95485229/206398186-bc7128d1-9fa9-40c8-8b51-36869b17b1bd.png) 
 
+## 🧩Pending Upgrade
+- Add other tasks to the HQ version.
 
 ## 🌟Installation
 ### Code
@@ -183,7 +186,7 @@ elif IR_mode=="old photo restoration":
     A = lambda z: A3(A2(A1(z)))
     Ap = lambda z: A1p(A2p(A3p(z)))
 ```
-2. Find the variant $\mathbf{x}\_{0|t}$ in the target codes, using the result of this function to modify the sampling of $\mathbf{x}\_{t-1}$. Your may need to provide the input degraded image $\mathbf{y}$ and the corresponding noise level $\sigma_\mathbf{y}$.
+2. Find the variant $\mathbf{x}\_{0|t}$ in the target codes, and use the result of this function to modify the sampling of $\mathbf{x}\_{t-1}$. Your may need to provide the input degraded image $\mathbf{y}$ and the corresponding noise level $\sigma_\mathbf{y}$.
 ```python
 # Core Implementation of DDNM+, simplified denoising solution (Section 3.3).
 # For more accurate denoising, please refer to the paper (Appendix I) and the source code.
