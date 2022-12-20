@@ -328,7 +328,17 @@ class GaussianDiffusion:
                 
 
                 # mask-shift trick 
-                if model_kwargs['shift_w']!=0:
+                if model_kwargs['shift_w']==0 and model_kwargs['shift_h']==0:
+                    pass
+                elif model_kwargs['shift_w']==0 and model_kwargs['shift_h']!=0:
+                    h_l = int(128*model_kwargs['shift_h'])
+                    h_r = h_l+128
+                    if (model_kwargs['shift_h']==model_kwargs['shift_h_total']-1) and (model_kwargs['H_target']%128!=0):
+                        h_l = h_l-128+model_kwargs['H_target']%128
+                        x0_t_hat[:,:,0:256-model_kwargs['H_target']%128,:] = model_kwargs['x_temp'][:,:,h_l:h_r,0:256].to('cuda')
+                    else:
+                        x0_t_hat[:,:,0:128,:] = model_kwargs['x_temp'][:,:,h_l:h_r,0:256].to('cuda')
+                else:
                     w_l = int(128*model_kwargs['shift_w'])
                     w_r = w_l+128
                     h_l = int(128*model_kwargs['shift_h'])
