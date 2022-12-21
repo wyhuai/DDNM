@@ -139,6 +139,8 @@ sh evaluation.sh
 ```
 This script contains SR results up to **2K** resolution. It may take hours to finish some demos in this script. Setting a smaller sampling step or time-travel parameters in hq_demo/confs/inet256.yml can speed up, but may compromise the generative quality.
 
+<a href="https://colab.research.google.com/drive/1SRSD6GXGqU0eO2CoTNY-2WykB9qRZHJv?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a>
+
 ## 😊Applying DDNM to Your Own Diffusion Model
 It is ***very easy*** to implement a basic DDNM on your own diffusion model! You may reference the following:
 1. Copy these operator implementations to the core diffusion sampling file, then define your task type, e.g., set `IR_mode="super resolution"`.
