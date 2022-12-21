@@ -51,6 +51,17 @@ def save_image(img, save_dir, idx):
     im_save_path = os.path.join(save_dir, f"{idx:05d}.png")
     Image.fromarray(np.array(result)).save(im_save_path)
     
+def color2gray(x):
+    coef=1/3
+    x = x[:,0,:,:] * coef + x[:,1,:,:]*coef +  x[:,2,:,:]*coef
+    return x.repeat(1,3,1,1)
+
+def gray2color(x):
+    x = x[:,0,:,:]
+    coef=1/3
+    base = coef**2 + coef**2 + coef**2
+    return torch.stack((x*coef/base, x*coef/base, x*coef/base), 1)    
+
 def MeanUpsample(x, scale):
     n, c, h, w = x.shape
     out = th.zeros(n, c, h, scale, w, scale).to(x.device) + x.view(n,c,h,1,w,1)
@@ -310,7 +321,8 @@ class GaussianDiffusion:
 
                 A, Ap = model_kwargs['A'], model_kwargs['Ap']
                 sigma_y = model_kwargs['sigma_y']
-                y = model_kwargs['y_img']
+                #y = model_kwargs['y_img']
+                Apy = model_kwargs['Apy']
                 
                 sigma_t = th.sqrt(_extract_into_tensor(self.posterior_variance, t, x0_t.shape))[0][0][0][0]
                 a_t = _extract_into_tensor(self.posterior_mean_coef1, t, x0_t.shape)[0][0][0][0]
@@ -324,7 +336,9 @@ class GaussianDiffusion:
                     gamma_t = 0.
 
                 # Eq. 17
-                x0_t_hat = x0_t + lambda_t*Ap(y-A(x0_t))
+                #x0_t_hat = x0_t + lambda_t*Ap(y-A(x0_t))
+                x0_t_hat = lambda_t*Apy + x0_t - lambda_t*Ap(A(x0_t))
+                
                 
 
                 # mask-shift trick 
@@ -566,39 +580,84 @@ class GaussianDiffusion:
 
         if 256%scale!=0:
             raise ValueError("Please set a SR scale divisible by 256")
+        if gt.shape[2]!=256 and conf.name=='face256':
+            print("gt.shape:",gt.shape)
+            raise ValueError("Only support output size 256x256 for face images")
 
         if model_kwargs['resize_y']:
-            A_temp = torch.nn.AdaptiveAvgPool2d((gt.shape[2]//scale,gt.shape[3]//scale))
-            y_temp = A_temp(gt)
-        else:
-            y_temp = gt
+            resize_y = lambda z: MeanUpsample(z,scale)
+            gt = resize_y(gt)
+            
 
-        if model_kwargs['deg'] =='sr_averagepooling':
+        if model_kwargs['deg']=='sr_averagepooling':
             scale=model_kwargs['scale'] 
             A = torch.nn.AdaptiveAvgPool2d((256//scale,256//scale))
             Ap = lambda z: MeanUpsample(z,scale)
+
+            A_temp = torch.nn.AdaptiveAvgPool2d((gt.shape[2]//scale,gt.shape[3]//scale))
+        elif model_kwargs['deg']=='inpainting' and conf.name=='face256':
+            mask = model_kwargs.get('gt_keep_mask')
+            A = lambda z: z*mask
+            Ap = A
+
+            A_temp = A
+        elif model_kwargs['deg']=='mask_color_sr' and conf.name=='face256':
+            mask = model_kwargs.get('gt_keep_mask')
+            A1 = lambda z: z*mask
+            A1p = A1
+            
+            A2 = lambda z: color2gray(z)
+            A2p = lambda z: gray2color(z)
+            
+            scale=model_kwargs['scale']
+            A3 = torch.nn.AdaptiveAvgPool2d((256//scale,256//scale))
+            A3p = lambda z: MeanUpsample(z,scale)
+            
+            A = lambda z: A3(A2(A1(z)))
+            Ap = lambda z: A1p(A2p(A3p(z)))
+
+            A_temp = A    
+        elif model_kwargs['deg']=='colorization':
+            A = lambda z: color2gray(z)
+            Ap = lambda z: gray2color(z)
+
+            A_temp = A
+        elif model_kwargs['deg']=='sr_color':
+            scale=model_kwargs['scale'] 
+            A1 = torch.nn.AdaptiveAvgPool2d((256//scale,256//scale))
+            A1p = lambda z: MeanUpsample(z,scale)
+            A2 = lambda z: color2gray(z)
+            A2p = lambda z: gray2color(z)
+            A = lambda z: A2(A1(z))
+            Ap = lambda z: A1p(A2p(z))
+
+            A1_temp = torch.nn.AdaptiveAvgPool2d((gt.shape[2]//scale,gt.shape[3]//scale))
+            A_temp = lambda z: A2(A1_temp(z))            
         else:
             raise NotImplementedError("degradation type not supported")         
 
         model_kwargs['A'] = A
         model_kwargs['Ap'] = Ap
 
-        H_target, W_target = Ap(y_temp).shape[2], Ap(y_temp).shape[3]
+        y_temp = A_temp(gt)
+        Apy_temp = Ap(y_temp)
+
+        H_target, W_target = Apy_temp.shape[2], Apy_temp.shape[3]
         model_kwargs['H_target'] = H_target
         model_kwargs['W_target'] = W_target
 
         if H_target<256 or W_target<256:
             raise ValueError("Please set a larger SR scale")
 
-        image_savepath = os.path.join('results/'+model_kwargs['save_path']+'/Ap')
+        image_savepath = os.path.join('results/'+model_kwargs['save_path']+'/Apy')
         os.makedirs(image_savepath, exist_ok=True)
-        save_image(Ap(y_temp)[0], image_savepath, 0)
+        save_image(Apy_temp[0], image_savepath, 0)
         
         image_savepath = os.path.join('results/'+model_kwargs['save_path']+'/y')
         os.makedirs(image_savepath, exist_ok=True)
         save_image(y_temp[0], image_savepath, 0)
 
-        finalresult = torch.zeros_like(Ap(y_temp))
+        finalresult = torch.zeros_like(Apy_temp)
 
         shift_h_total = math.ceil(H_target/128)-1
         shift_w_total = math.ceil(W_target/128)-1
@@ -610,28 +669,29 @@ class GaussianDiffusion:
 
             # shift along H
             for shift_h in range(shift_h_total):
-                h_l = int((128//scale)*shift_h)
-                h_r = h_l+(256//scale)
+                h_l = int(128*shift_h)
+                h_r = h_l+256
                 if (shift_h==shift_h_total-1) and (H_target%128!=0): # for the last irregular shift_h
-                    h_r = y_temp.shape[2]
-                    h_l = h_r-(256//scale)
+                    h_r = Apy_temp.shape[2]
+                    h_l = h_r-256
 
                 # shift along W
                 for shift_w in range(shift_w_total):
 
                     x_temp=finalresult
-                    w_l = int((128//scale)*shift_w)
-                    w_r = w_l+(256//scale)
+                    w_l = int(128*shift_w)
+                    w_r = w_l+256
                     if (shift_w==shift_w_total-1) and (W_target%128!=0): # for the last irregular shift_w
-                        w_r = y_temp.shape[3]
-                        w_l = w_r-(256//scale)
+                        w_r = Apy_temp.shape[3]
+                        w_l = w_r-256
 
                     # get the shifted y
-                    y = y_temp[:,:,h_l:h_r,w_l:w_r]
+                    Apy = Apy_temp[:,:,h_l:h_r,w_l:w_r]
 
                     model_kwargs['shift_w'] = shift_w
                     model_kwargs['shift_h'] = shift_h
-                    model_kwargs['y_img'] = y
+                    # model_kwargs['y_img'] = y
+                    model_kwargs['Apy'] = Apy
                     model_kwargs['x_temp'] = x_temp
 
                     times = get_schedule_jump(**conf.schedule_jump_params)
