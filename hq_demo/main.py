@@ -121,7 +121,7 @@ def main(conf: conf_mgt.Default_Conf, args):
                             transforms.ToTensor(),
                             transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
                         ])
-        print("gt.size:",gt.size)
+        #print("gt.size:",gt.size)
         gt = data_transform(gt).unsqueeze(0).to("cuda")
         model_kwargs["gt"] = gt
         model_kwargs['scale'] = args.get('scale')
@@ -182,7 +182,7 @@ if __name__ == "__main__":
     
     
     """
-    when y has the same shape with the desired result and need to be resized, use it
+    resize y to the same shape with the desired result
     """
     parser.add_argument('--resize_y', default=False, action='store_true')
     
