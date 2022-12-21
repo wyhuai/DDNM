@@ -30,7 +30,7 @@ classifier_scale: 1.0
 lr_kernel_n_std: 2
 num_samples: 100
 show_progress: true
-timestep_respacing: '250'
+timestep_respacing: '100'
 use_kl: false
 predict_xstart: false
 rescale_timesteps: false
@@ -58,7 +58,7 @@ n_jobs: 25
 print_estimated_vars: true
 inpa_inj_sched_prev_cumnoise: false
 schedule_jump_params:
-  t_T: 250
+  t_T: 100
   n_sample: 1
   jump_length: 10
   jump_n_sample: 3
