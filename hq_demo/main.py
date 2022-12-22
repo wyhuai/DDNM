@@ -204,7 +204,7 @@ if __name__ == "__main__":
     614:kimono
     340:zebra
     """
-    parser.add_argument('--class', type=int, required=False, default=950)
+    parser.add_argument('--class', type=int, required=False, default=None)
     
 
     args = vars(parser.parse_args())
