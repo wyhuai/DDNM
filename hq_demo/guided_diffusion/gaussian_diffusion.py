@@ -386,7 +386,7 @@ class GaussianDiffusion:
                     save_image(x0_t_hat[0], image_savepath, t[0])
             
                 model_mean, _, _ = self.q_posterior_mean_variance(x_start=x0_t_hat, x_t=x, t=t)
-                model_variance = gamma_t*model_variance                
+                model_variance = gamma_t # model_variance                
             
         else:
             raise NotImplementedError(self.model_mean_type)
@@ -481,8 +481,11 @@ class GaussianDiffusion:
             )
 
         noise = th.randn_like(x)
+        #sample = out["mean"] + nonzero_mask * \
+        #    th.exp(0.5 * out["log_variance"]) * noise# - out["xt_grad"]
+        
         sample = out["mean"] + nonzero_mask * \
-            th.exp(0.5 * out["log_variance"]) * noise# - out["xt_grad"]
+            th.sqrt(th.ones(1,device='cuda')*out["variance"]) * noise
 
         result = {"sample": sample,
                   "x0_t": out["x0_t"], 'gt': model_kwargs.get('gt')}
