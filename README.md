@@ -125,9 +125,9 @@ python main.py --ni --simplified --config celeba_hq.yml --path_y {YOUR_OWN_PATH}
 ## 🆕DDNM for Arbitrary Size
 ![123456](https://user-images.githubusercontent.com/95485229/206181069-0f134804-63e3-4ba1-9ad1-0a4ccd9dd72e.png)![image](https://user-images.githubusercontent.com/95485229/206333186-c240fad9-3602-46f5-8bc7-a66e8c463196.png)
 
-Above we show an example of using DDNM to SR a 64x256 input image into a 256x1024 result. We call this newly conceived method the **Mask-Shift trick**, whose details can be found in the updated version of our [paper](https://arxiv.org/pdf/2212.00490.pdf), section 7.
+Above we show an example of using DDNM to SR a 64x256 input image into a 256x1024 result. The theory details can be found in this [paper](https://arxiv.org/abs/2303.00354), section 3.3.
 
-We implement the **Mask-Shift trick** in the folder `hq_demo`, based on [RePaint](https://github.com/andreas128/RePaint). You can try this [**Colab demo**](https://colab.research.google.com/drive/1SRSD6GXGqU0eO2CoTNY-2WykB9qRZHJv?usp=sharing). <a href="https://colab.research.google.com/drive/1SRSD6GXGqU0eO2CoTNY-2WykB9qRZHJv?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a>
+We implement the **Mask-Shift Restoration** in the folder `hq_demo`, based on [RePaint](https://github.com/andreas128/RePaint). You can try this [**Colab demo**](https://colab.research.google.com/drive/1SRSD6GXGqU0eO2CoTNY-2WykB9qRZHJv?usp=sharing). <a href="https://colab.research.google.com/drive/1SRSD6GXGqU0eO2CoTNY-2WykB9qRZHJv?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a>
 
 Or, you can try this function on your own device, you need to download the pre-trained models:
 ```
