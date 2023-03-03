@@ -1,5 +1,5 @@
 # Zero Shot Image Restoration Using Denoising Diffusion Null-Space Model
-## 📖[**Paper**](https://arxiv.org/pdf/2212.00490.pdf)|🖼️[**Project Page**](https://wyhuai.github.io/ddnm.io/)| <a href="https://colab.research.google.com/drive/1SRSD6GXGqU0eO2CoTNY-2WykB9qRZHJv?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a>
+## 📖[**Paper**](https://arxiv.org/pdf/2212.00490.pdf)|🖼️[**Project Page**](https://wyhuai.github.io/ddnm.io/)| <a href="https://colab.research.google.com/drive/1SRSD6GXGqU0eO2CoTNY-2WykB9qRZHJv?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a> [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/hysts/DDNM-HQ)
 
 [Yinhuai Wang*](https://wyhuai.github.io/info/), [Jiwen Yu*](https://scholar.google.com.hk/citations?user=uoRPLHIAAAAJ), [Jian Zhang](https://jianzhang.tech/)  
 Peking University and PCL  
