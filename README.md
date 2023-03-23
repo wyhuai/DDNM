@@ -21,7 +21,9 @@ This repository contains the code release for *Zero Shot Image Restoration Using
 - Compressed Sensing
 
 
-![front](https://user-images.githubusercontent.com/95485229/206398186-bc7128d1-9fa9-40c8-8b51-36869b17b1bd.png) 
+![front](https://user-images.githubusercontent.com/95485229/227095293-1024f337-1fde-494b-ae82-97d6139bbefe.jpg)
+
+
 
 ## 🧩News
 - A Colab demo for high-quality results is now avaliable! <a href="https://colab.research.google.com/drive/1SRSD6GXGqU0eO2CoTNY-2WykB9qRZHJv?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="google colab logo"></a>
