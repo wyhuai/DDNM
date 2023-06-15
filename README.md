@@ -220,8 +220,8 @@ If you find this repository useful for your research, please cite the following 
 @article{wang2022zero,
   title={Zero-Shot Image Restoration Using Denoising Diffusion Null-Space Model},
   author={Wang, Yinhuai and Yu, Jiwen and Zhang, Jian},
-  journal={arXiv preprint arXiv:2212.00490},
-  year={2022}
+  journal={The Eleventh International Conference on Learning Representations},
+  year={2023}
 }
 ```
 This implementation is based on / inspired by:
