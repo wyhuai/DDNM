@@ -7,7 +7,7 @@ Peking University and PCL
 
 
 
-This repository contains the code release for *Zero Shot Image Restoration Using ***D***enoising ***D***iffusion ***N***ull-Space ***M***odel*. **DDNM** can solve various image restoration tasks **without any optimization or training! Yes, in a zero-shot manner**.
+This repository contains the code release for *Zero-Shot Image Restoration Using ***D***enoising ***D***iffusion ***N***ull-Space ***M***odel*. **DDNM** can solve various image restoration tasks **without any optimization or training! Yes, in a zero-shot manner**.
 
 
 ***Supported Applications:***
