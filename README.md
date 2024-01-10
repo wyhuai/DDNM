@@ -113,8 +113,8 @@ python main.py --ni --simplified --config oldphoto.yml --path_y oldphoto --eta 0
 ```
 ### Try your own photos.
 You may use DDNM to restore your own degraded images. DDNM provides full flexibility for you to define the degradation operator and the noise level. Note that these definitions are critical for a good results. You may reference the following guidance.
-1. If your are using CelebA pretrained models, try this [tool](???) to crop and align your photo.
-2. If there are local artifacts on your photo, try this [tool](???) to draw a mask to cover them, and save this mask to `DDNM/exp/inp_masks/mask.png`. Then run `DDNM/exp/inp_masks/get_mask.py` to generate `mask.npy`.
+1. If you are using CelebA pretrained models, try the tool in [GFPGAN](https://github.com/TencentARC/GFPGAN) to crop and align your photo.
+2. If there are local artifacts on your photo, try the tool in [LaMa](https://colab.research.google.com/github/advimman/lama/blob/master/colab/LaMa_inpainting.ipynb#scrollTo=-VZWySTMeGDM) to draw a mask to cover them, and save this mask to `DDNM/exp/inp_masks/mask.png`. Then run `DDNM/exp/inp_masks/get_mask.py` to generate `mask.npy`.
 3. If your photo is faded, you need a grayscale operator as part of the degradation.
 4. If your photo is blur, you need a downsampler operator as part of the degradation. Also, you need to set a proper SR scale `--deg_scale`.
 5. If your photo suffers global artifacts, e.g., jpeg-like artifacts or unkown noise, you need to set a proper `sigma_y` to remove these artifacts.
